@@ -1,0 +1,8 @@
+node_modules
+dist
+public
+build
+.next
+next.config.js
+jest.config.js
+setupTests.js

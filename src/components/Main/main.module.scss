@@ -1,0 +1,19 @@
+@use 'global' as *;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  & h1 {
+    font-weight: 600;
+    margin: 0;
+  }
+
+  & p {
+    font-weight: 300;
+    margin: 0;
+  }
+}

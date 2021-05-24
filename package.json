@@ -1,0 +1,53 @@
+{
+  "name": "portfolio2021",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --watchAll=false",
+    "format": "prettier --write \"src/**/**/*.{ts,tsx}\"",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint --fix --ext .ts,tsx"
+  },
+  "pre-commit": [
+    "lint",
+    "format"
+  ],
+  "dependencies": {
+    "clsx": "^1.1.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-css-modules-transform": "^4.2.1",
+    "next": "^10.2.0",
+    "pre-commit": "^1.2.2",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "sass": "^1.32.7",
+    "ts-jest": "^26.5.6"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^7.29.4",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.7.1",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.27",
+    "@types/react": "^17.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "babel-jest": "^26.6.3",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.23.2",
+    "jest": "^26.6.3",
+    "typescript": "^4.1.5"
+  },
+  "optionalDependencies": {
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb-typescript-prettier": "^4.1.0",
+    "eslint-plugin-jest": "^24.1.0",
+    "prettier": "^2.1.2"
+  }
+}
