@@ -18,10 +18,11 @@
     "format"
   ],
   "dependencies": {
+    "axios": "^0.21.1",
     "clsx": "^1.1.1",
     "identity-obj-proxy": "^3.0.0",
     "jest-css-modules-transform": "^4.2.1",
-    "next": "^10.2.0",
+    "next": "^10.2.3",
     "pre-commit": "^1.2.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
