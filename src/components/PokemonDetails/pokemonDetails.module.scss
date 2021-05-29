@@ -1,1 +1,93 @@
 @use 'global' as *;
+
+.container {
+  width: 100%;
+  margin-top: 60px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border: 1px solid $white;
+  background: #f0a17f;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.name {
+  margin: 0;
+  text-transform: capitalize;
+  font-weight: 400;
+}
+
+.number {
+  font-weight: 300;
+  margin: 0;
+}
+
+.imgContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  & > img {
+    width: 100%;
+    background: #f0a17f;
+    border-radius: 50%;
+    border: 3px solid $white;
+  }
+}
+
+.imgTitle {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.button {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border: 2px solid $white;
+  border-radius: 5px;
+  background: #f0a17f;
+  color: $white;
+  font-weight: 600;
+  padding: 10px 35px;
+  width: 100%;
+  font-size: 18px;
+}
+
+.typesContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.typeTitle,
+.statTitle {
+  font-weight: 800;
+}
+
+.types {
+  display: flex;
+  justify-content: space-between;
+}
+
+.typeName,
+.stat {
+  border: 1px solid $white;
+  border-radius: 5px;
+  padding: 2px 5px;
+  background: #f0a17f;
+  font-weight: 500;
+
+  &:last-child {
+    margin-left: 10px;
+  }
+}
+
+.statContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
