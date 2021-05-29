@@ -2,7 +2,7 @@ import axios from 'axios'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const url = `${process.env.POKE_URL}${req.body.name}`
+  const url = `${process.env.POKE_URL}pokemon/${req.body.name}`
 
   if (req.method !== 'POST') {
     return res.status(400).send('Invalid HTTP Method')
