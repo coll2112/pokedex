@@ -1,4 +1,3 @@
-/** Convert to useSWR */
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'

@@ -1,5 +1,7 @@
+import Link from 'next/link'
 import React, { useState } from 'react'
 import usePokeDetails from '~hooks/usePokeDetails'
+import pokemonIdPrefix from '~utils/pokemonIdPrefix'
 
 import styles from './pokemonDetails.module.scss'
 
@@ -13,23 +15,6 @@ const PokemonDetails = ({ params }) => {
 
   if (error) {
     return <h1>error yo</h1>
-  }
-
-  const handleImgToggle = () => {
-    setToggleImg(!toggleImg)
-  }
-
-  const pokemonIdPrefix = (id) => {
-    let pokemonNumber
-    if (id > 100) {
-      pokemonNumber = `#${id}`
-    } else if (id > 9 && id < 100) {
-      pokemonNumber = `#0${id}`
-    } else {
-      pokemonNumber = `#00${id}`
-    }
-
-    return pokemonNumber
   }
 
   const pokeTypes = pokeDetails.types.map((t) => (
@@ -57,16 +42,27 @@ const PokemonDetails = ({ params }) => {
         <h3 className={styles.number}>{pokemonIdPrefix(pokeDetails.id)}</h3>
       </div>
       <div className={styles.imgContainer}>{switchImg}</div>
-      <button className={styles.button} type="button" onClick={handleImgToggle}>
-        Show {toggleImg ? 'Default' : 'Shiny'} Sprites
-      </button>
+      <div className={styles.btnContainer}>
+        <button
+          className={styles.button}
+          type="button"
+          onClick={() => setToggleImg(!toggleImg)}
+        >
+          Show {toggleImg ? 'Default' : 'Shiny'} Variation
+        </button>
+        <Link href="/">
+          <button className={styles.button} type="button">
+            Back to Results
+          </button>
+        </Link>
+      </div>
       <div className={styles.typesContainer}>
         <p className={styles.typeTitle}>Types:</p>
         <div className={styles.types}>{pokeTypes}</div>
       </div>
       <div className={styles.statContainer}>
         <p className={styles.statTitle}>Weight:</p>
-        <p className={styles.stat}>{pokeDetails.weight} lbs</p>
+        <p className={styles.stat}>{pokeDetails.weight}</p>
       </div>
       <div className={styles.statContainer}>
         <p className={styles.statTitle}>Height: </p>
