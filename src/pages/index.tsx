@@ -1,6 +1,6 @@
 import React from 'react'
-import Main from '~components/Main'
+import Pokemon from '~components/Pokemon'
 
-const Home = () => <Main />
+const Home = () => <Pokemon />
 
 export default Home

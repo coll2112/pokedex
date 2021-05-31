@@ -2,9 +2,9 @@ import React from 'react'
 import Link from 'next/link'
 import useCatchPokemon from '~hooks/useCatchPokemon'
 
-import styles from './main.module.scss'
+import styles from './pokemon.module.scss'
 
-const Main = () => {
+const Pokemon = () => {
   const { pokemon, error, isLoading = false } = useCatchPokemon(151)
 
   const pokemonMap = pokemon.map((p) => (
@@ -55,4 +55,4 @@ const Main = () => {
   )
 }
 
-export default Main
+export default Pokemon
