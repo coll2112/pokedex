@@ -5,7 +5,7 @@ import useCatchPokemon from '~hooks/useCatchPokemon'
 import styles from './pokemon.module.scss'
 
 const Pokemon = () => {
-  const { pokemon, error, isLoading = false } = useCatchPokemon(151)
+  const { pokemon, error, isValidating } = useCatchPokemon(151)
 
   const pokemonMap = pokemon.map((p) => (
     <Link key={p.name} href={`pokemon/${p.name}`}>
@@ -13,7 +13,7 @@ const Pokemon = () => {
     </Link>
   ))
 
-  if (error.status) {
+  if (error) {
     return (
       <div className={styles.errorContainer}>
         <h2 className={styles.error}>
@@ -23,7 +23,7 @@ const Pokemon = () => {
     )
   }
 
-  if (isLoading) {
+  if (isValidating) {
     return (
       <div className={styles.loading}>
         <h3>

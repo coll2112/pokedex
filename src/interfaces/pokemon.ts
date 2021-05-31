@@ -1,6 +1,7 @@
 export interface Pokemon {
   name: string
   url: string
+  sprite?: string
 }
 
 export interface Sprites {
