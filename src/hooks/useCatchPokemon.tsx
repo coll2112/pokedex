@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Pokemon } from '~interfaces/pokemon'
 import { Error } from '~interfaces/error'
 
-const useCatchPokemon = (limit: number) => {
+const useCatchPokemon = (limit?: number) => {
   const [pokemon, setPokemon] = useState<Array<Pokemon>>([])
   const [error, setError] = useState<Error>({ errorMessage: '', status: '' })
   const [isLoading, setIsLoading] = useState(true)

@@ -5,32 +5,52 @@ import useCatchPokemon from '~hooks/useCatchPokemon'
 import styles from './main.module.scss'
 
 const Main = () => {
-  const { pokemon, error, isLoading } = useCatchPokemon(151)
+  const { pokemon, error, isLoading = false } = useCatchPokemon(151)
 
-  const caughtThemAll = pokemon.map((p) => (
+  const pokemonMap = pokemon.map((p) => (
     <Link key={p.name} href={`pokemon/${p.name}`}>
-      <h2>{p.name}</h2>
+      <a className={styles.link}>{p.name}</a>
     </Link>
   ))
 
   if (error.status) {
     return (
-      <div>
-        <h2>
-          {error.errorMessage}... status: {error.status}
+      <div className={styles.errorContainer}>
+        <h2 className={styles.error}>
+          {error.errorMessage} {error.status && `status: ${error.status}`}
         </h2>
       </div>
     )
   }
 
   if (isLoading) {
-    return <h3>Loading...</h3>
+    return (
+      <div className={styles.loading}>
+        <h3>
+          Catching Pokemon
+          <span className={styles.loadingDot}>.</span>
+          <span className={styles.loadingDot}>.</span>
+          <span className={styles.loadingDot}>.</span>
+        </h3>
+        <div className={styles.gifContainer}>
+          <img
+            alt="Pikachu Gif"
+            className={styles.gif}
+            src="https://media.tenor.com/images/6e190eb7b580983ce09c7ccf0c91519d/tenor.gif"
+            width="100"
+          />
+        </div>
+      </div>
+    )
   }
 
   return (
     <div className={styles.container}>
-      <h1>Number of Pokemon: {pokemon.length}</h1>
-      {caughtThemAll}
+      <h1 className={styles.headerContainer}>
+        <p className={styles.headerText}>Number of Pokemon:</p>{' '}
+        <p className={styles.headerCount}>{pokemon.length}</p>
+      </h1>
+      {pokemonMap}
     </div>
   )
 }
