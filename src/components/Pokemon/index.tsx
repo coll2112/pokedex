@@ -43,13 +43,15 @@ const Pokemon = () => {
     <Link key={p.name} href={`pokemon/${p.name}`}>
       <a className={styles.link}>
         <div className={styles.card}>
-          <div className={styles.number}>{pokemonIdPrefix(p.id)}</div>
           <img
             alt={`front sprite of ${p.name}`}
             className={styles.sprite}
             src={p.sprites.front}
           />
-          <p className={styles.name}>{p.name}</p>
+          <div className={styles.info}>
+            <div className={styles.number}>{pokemonIdPrefix(p.id)}</div>
+            <p className={styles.name}>{p.name}</p>
+          </div>
         </div>
       </a>
     </Link>
