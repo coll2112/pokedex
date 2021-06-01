@@ -1,21 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
-import useCatchPokemon from '~hooks/useCatchPokemon'
 import { usePokemonProvider } from '~contexts/pokemon'
+import pokemonIdPrefix from '~utils/pokemonIdPrefix'
 
 import styles from './pokemon.module.scss'
 
 const Pokemon = () => {
-  const pokeDetails = usePokemonProvider()
-  const { pokemon, isValidating, error } = useCatchPokemon(151)
-
-  const pokemonMap = pokemon.map((p) => (
-    <Link key={p.name} href={`pokemon/${p.name}`}>
-      <a className={styles.link}>{p.name}</a>
-    </Link>
-  ))
-
-  console.log(pokeDetails)
+  const { data, isValidating, error } = usePokemonProvider()
 
   if (error) {
     return (
@@ -48,11 +39,27 @@ const Pokemon = () => {
     )
   }
 
+  const pokemonMap = data.map((p) => (
+    <Link key={p.name} href={`pokemon/${p.name}`}>
+      <a className={styles.link}>
+        <div className={styles.card}>
+          <div className={styles.number}>{pokemonIdPrefix(p.id)}</div>
+          <img
+            alt={`front sprite of ${p.name}`}
+            className={styles.sprite}
+            src={p.sprites.front}
+          />
+          <p className={styles.name}>{p.name}</p>
+        </div>
+      </a>
+    </Link>
+  ))
+
   return (
     <div className={styles.container}>
       <h1 className={styles.headerContainer}>
         <p className={styles.headerText}>Number of Pokemon:</p>{' '}
-        <p className={styles.headerCount}>{pokemon.length}</p>
+        <p className={styles.headerCount}>{data.length}</p>
       </h1>
       {pokemonMap}
     </div>

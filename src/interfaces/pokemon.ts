@@ -1,6 +1,10 @@
 export interface Pokemon {
   name: string
-  url: string
+  id: number
+  sprites: {
+    front: string
+    back: string
+  }
 }
 
 export interface Sprites {
@@ -27,4 +31,13 @@ export interface PokeDetails {
   types: Types[]
   weight: number
   height: number
+}
+
+export interface InitState {
+  data: Pokemon[]
+  isValidating: boolean
+  error: {
+    errorMessage: string
+    status: string
+  }
 }
