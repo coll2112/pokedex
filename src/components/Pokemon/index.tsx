@@ -1,17 +1,21 @@
 import React from 'react'
 import Link from 'next/link'
 import useCatchPokemon from '~hooks/useCatchPokemon'
+import { usePokemonProvider } from '~contexts/pokemon'
 
 import styles from './pokemon.module.scss'
 
 const Pokemon = () => {
-  const { pokemon, error, isValidating } = useCatchPokemon(151)
+  const pokeDetails = usePokemonProvider()
+  const { pokemon, isValidating, error } = useCatchPokemon(151)
 
   const pokemonMap = pokemon.map((p) => (
     <Link key={p.name} href={`pokemon/${p.name}`}>
       <a className={styles.link}>{p.name}</a>
     </Link>
   ))
+
+  console.log(pokeDetails)
 
   if (error) {
     return (

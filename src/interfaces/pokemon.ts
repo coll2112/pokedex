@@ -7,17 +7,16 @@ export interface Sprites {
   // eslint-disable-next-line camelcase
   front_default: string
   // eslint-disable-next-line camelcase
-  front_shiny: string
+  front_shiny?: string
   // eslint-disable-next-line camelcase
-  back_default: string
+  back_default?: string
   // eslint-disable-next-line camelcase
-  back_shiny: string
+  back_shiny?: string
 }
 
 export interface Types {
   type: {
     name: string
-    url: string
   }
 }
 

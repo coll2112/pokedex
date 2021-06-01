@@ -9,6 +9,7 @@
       "~hooks/*": ["src/hooks/*"],
       "~interfaces/*": ["src/interfaces/*"],
       "~utils/*": ["src/utils/*"],
+      "~contexts/*": ["src/contexts/*"],
       "~/*": ["src/*"],
       "global": ["src/styles/global"]
     },

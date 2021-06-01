@@ -14,6 +14,7 @@ const axiosFetcher = async (url: string) => {
 
 const usePokeDetails = (name) => {
   const [pokeDetails, setPokeDetails] = useState<PokeDetails>()
+
   const { data, isValidating, error } = useSWR(
     `/api/details?name=${name}`,
     axiosFetcher
