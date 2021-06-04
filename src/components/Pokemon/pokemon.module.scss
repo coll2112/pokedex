@@ -6,6 +6,12 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
+
+  @include mobile {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 }
 
 .headerContainer {
@@ -16,6 +22,11 @@
   align-items: center;
   margin: 0;
   margin-top: 60px;
+
+  @include mobile {
+    justify-content: flex-start;
+    margin-top: 0px;
+  }
 }
 
 .headerText {
@@ -25,21 +36,12 @@
 .headerText,
 .headerCount {
   font-size: 22px;
-}
 
-// .link {
-//   text-decoration: none;
-//   text-transform: uppercase;
-//   color: $white;
-//   // border: $white 1px solid;
-//   width: 255px;
-//   // padding: 15px 0;
-//   margin: 10px 0;
-//   // border-radius: 5px;
-//   background: $peach;
-//   text-align: center;
-//   font-weight: 800;
-// }
+  @include mobile {
+    font-size: 32px;
+    font-weight: 300;
+  }
+}
 
 .link {
   text-decoration: none;
@@ -58,6 +60,18 @@
   align-items: center;
   border: 1px solid $white;
   text-align: right;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: darken($peach, 10);
+  }
+
+  @include mobile {
+    min-width: 100%;
+    // margin: 0 20px;
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 .sprite {
@@ -65,6 +79,11 @@
   border: 1px solid $white;
   border-radius: 50%;
   padding: 5px;
+
+  @include mobile {
+    padding: 15px;
+    margin-bottom: 10px;
+  }
 }
 
 .errorContainer {
