@@ -37,11 +37,13 @@ const PokemonDetails = ({ params }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>
-        <h3 className={styles.name}>{pokeDetails.name}</h3>
-        <h3 className={styles.number}>{pokemonIdPrefix(pokeDetails.id)}</h3>
+      <div className={styles.headerContainer}>
+        <div className={styles.title}>
+          <h3 className={styles.name}>{pokeDetails.name}</h3>
+          <h3 className={styles.number}>{pokemonIdPrefix(pokeDetails.id)}</h3>
+        </div>
+        <div className={styles.imgContainer}>{switchImg}</div>
       </div>
-      <div className={styles.imgContainer}>{switchImg}</div>
       <div className={styles.btnContainer}>
         <button
           className={styles.button}
@@ -56,8 +58,8 @@ const PokemonDetails = ({ params }) => {
           </button>
         </Link>
       </div>
-      <div className={styles.typesContainer}>
-        <p className={styles.typeTitle}>Types:</p>
+      <div className={styles.statContainer}>
+        <p className={styles.statTitle}>Types:</p>
         <div className={styles.types}>{pokeTypes}</div>
       </div>
       <div className={styles.statContainer}>
