@@ -15,5 +15,7 @@ export const initState: InitState = {
   error: {
     errorMessage: '',
     status: ''
-  }
+  },
+  setPaginationPage: () => null,
+  offset: 0
 }

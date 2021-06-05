@@ -40,4 +40,6 @@ export interface InitState {
     errorMessage: string
     status: string
   }
+  setPaginationPage: (offset: number) => void
+  offset: number
 }

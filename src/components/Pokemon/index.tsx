@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { usePokemonProvider } from '~contexts/pokemon'
 import pokemonIdPrefix from '~utils/pokemonIdPrefix'
+import Pagination from '~/components/Pagination'
 
 import styles from './pokemon.module.scss'
 
@@ -18,7 +19,7 @@ const Pokemon = () => {
     )
   }
 
-  if (isValidating) {
+  if (isValidating || !data) {
     return (
       <div className={styles.loading}>
         <h3>
@@ -59,6 +60,7 @@ const Pokemon = () => {
 
   return (
     <div className={styles.container}>
+      <Pagination />
       <h1 className={styles.headerContainer}>
         <p className={styles.headerText}>Number of Pokemon:</p>{' '}
         <p className={styles.headerCount}>{data.length}</p>
