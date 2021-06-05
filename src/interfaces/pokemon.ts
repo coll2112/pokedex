@@ -1,11 +1,15 @@
 export interface Pokemon {
   name: string
-  url: string
+  id: number
+  sprites: {
+    front: string
+    back: string
+  }
 }
 
 export interface Sprites {
   // eslint-disable-next-line camelcase
-  front_default?: string
+  front_default: string
   // eslint-disable-next-line camelcase
   front_shiny?: string
   // eslint-disable-next-line camelcase
@@ -14,18 +18,26 @@ export interface Sprites {
   back_shiny?: string
 }
 
-export interface PokemonType {
+export interface Types {
   type: {
     name: string
-    url?: string
   }
 }
 
 export interface PokeDetails {
   name: string
   id: number
-  sprites?: Sprites
-  types: PokemonType[]
+  sprites: Sprites
+  types: Types[]
   weight: number
   height: number
+}
+
+export interface InitState {
+  data: Pokemon[]
+  isValidating: boolean
+  error: {
+    errorMessage: string
+    status: string
+  }
 }

@@ -1,40 +1,22 @@
-/** Convert to useSWR */
 import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Pokemon } from '~interfaces/pokemon'
-import { Error } from '~interfaces/error'
+import useSWR from 'swr'
 
-const useCatchPokemon = (limit: number) => {
-  const [pokemon, setPokemon] = useState<Array<Pokemon>>([])
-  const [error, setError] = useState<Error>({ errorMessage: '', status: '' })
-  const [isLoading, setIsLoading] = useState(true)
-
-  const fetchPokemon = async () => {
-    try {
-      const { data } = await axios.post('/api/pokemon', { limit })
-      setPokemon(data.results)
-      setIsLoading(false)
-    } catch (err) {
-      setError({
-        ...err,
-        errorMessage: 'Error fetching Pokemon'
-      })
-      setIsLoading(false)
-    }
+const axiosFetcher = async (url: string) => {
+  try {
+    const res = await axios.get(url)
+    return res.data
+  } catch (error) {
+    return error
   }
+}
 
-  useEffect(() => {
-    let isSubscribed = true
-    if (isSubscribed) {
-      void fetchPokemon()
-    }
+const useCatchPokemon = (limit: number | string) => {
+  const { data, isValidating, error } = useSWR(
+    `/api/pokemon?limit=${limit}`,
+    axiosFetcher
+  )
 
-    return () => {
-      isSubscribed = false
-    }
-  }, [])
-
-  return { pokemon, isLoading, error }
+  return { data, isValidating, error }
 }
 
 export default useCatchPokemon

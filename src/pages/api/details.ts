@@ -4,8 +4,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const url = `${process.env.POKE_URL}pokemon/${req.query.name}`
 
-  console.log(req.query)
-
   if (req.method !== 'GET') {
     return res.status(400).send('Invalid HTTP Method')
   }

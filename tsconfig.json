@@ -8,6 +8,9 @@
       "~styles/*": ["src/styles/*"],
       "~hooks/*": ["src/hooks/*"],
       "~interfaces/*": ["src/interfaces/*"],
+      "~utils/*": ["src/utils/*"],
+      "~consts/*": ["src/consts/*"],
+      "~contexts/*": ["src/contexts/*"],
       "~/*": ["src/*"],
       "global": ["src/styles/global"]
     },
