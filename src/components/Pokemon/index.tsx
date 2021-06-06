@@ -7,7 +7,7 @@ import Pagination from '~/components/Pagination'
 import styles from './pokemon.module.scss'
 
 const Pokemon = () => {
-  const { data, isValidating, error } = usePokemonProvider()
+  const { data, isValidating, error, pageItems } = usePokemonProvider()
 
   if (error) {
     return (
@@ -40,7 +40,7 @@ const Pokemon = () => {
     )
   }
 
-  const pokemonMap = data.map((p) => (
+  const pokemonMap = pageItems.map((p) => (
     <Link key={p.name} href={`pokemon/${p.name}`}>
       <a className={styles.link}>
         <div className={styles.card}>
@@ -60,11 +60,9 @@ const Pokemon = () => {
 
   return (
     <div className={styles.container}>
-      <Pagination />
-      <h1 className={styles.headerContainer}>
-        <p className={styles.headerText}>Number of Pokemon:</p>{' '}
-        <p className={styles.headerCount}>{data.length}</p>
-      </h1>
+      <div className={styles.headerContainer}>
+        <Pagination />
+      </div>
       {pokemonMap}
     </div>
   )

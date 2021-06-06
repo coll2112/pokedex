@@ -10,7 +10,7 @@ const axiosFetcher = async (url: string) => {
   }
 }
 
-const useCatchPokemon = (limit: number, offset: number) => {
+const useCatchPokemon = (limit: number, offset?: number) => {
   const { data, isValidating, error } = useSWR(
     `/api/pokemon?limit=${limit}&offset=${offset}`,
     axiosFetcher

@@ -4,36 +4,35 @@ import { usePokemonProvider } from '~contexts/pokemon'
 import styles from './pagination.module.scss'
 
 const Pagination = () => {
-  const { data, offset, setPaginationPage } = usePokemonProvider()
+  const { page, pageItems, setPaginationPage } = usePokemonProvider()
+  //   const maxItems = Math.ceil(data.length / 12)
 
-  const buttons = data.map((p, i) => (
+  const buttons = pageItems.map((p, i) => (
     <button
       key={p.name}
       className={styles.button}
       type="button"
-      onClick={() => setPaginationPage(i * 10)}
+      onClick={() => setPaginationPage(i)}
     >
       {i + 1}
     </button>
   ))
 
-  const backButton = (
-    <button type="button" onClick={() => setPaginationPage(offset - 10)}>
-      Back
-    </button>
-  )
+  console.log(page)
 
-  const forwardButton = (
-    <button type="button" onClick={() => setPaginationPage(offset + 10)}>
-      Forward
-    </button>
-  )
+  //   const backButton = (
+  //     <button type="button" onClick={() => setPaginationPage()}>
+  //       Back
+  //     </button>
+  //   )
 
-  return (
-    <div className={styles.container}>
-      {backButton} {buttons} {forwardButton}
-    </div>
-  )
+  //   const forwardButton = (
+  //     <button type="button" onClick={() => setPaginationPage()}>
+  //       Forward
+  //     </button>
+  //   )
+
+  return <div className={styles.container}>{buttons}</div>
 }
 
 export default Pagination

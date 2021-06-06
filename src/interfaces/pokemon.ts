@@ -41,5 +41,7 @@ export interface InitState {
     status: string
   }
   setPaginationPage: (offset: number) => void
-  offset: number
+  offset?: number
+  page: number
+  pageItems: Pokemon[]
 }
