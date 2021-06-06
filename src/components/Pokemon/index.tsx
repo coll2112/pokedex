@@ -7,7 +7,9 @@ import Pagination from '~/components/Pagination'
 import styles from './pokemon.module.scss'
 
 const Pokemon = () => {
-  const { data, isValidating, error, pageItems } = usePokemonProvider()
+  const { isValidating, error, currentItems } = usePokemonProvider()
+
+  console.log(currentItems)
 
   if (error) {
     return (
@@ -19,7 +21,7 @@ const Pokemon = () => {
     )
   }
 
-  if (isValidating || !data) {
+  if (isValidating) {
     return (
       <div className={styles.loading}>
         <h3>
@@ -40,7 +42,7 @@ const Pokemon = () => {
     )
   }
 
-  const pokemonMap = pageItems.map((p) => (
+  const pokemonMap = currentItems.map((p) => (
     <Link key={p.name} href={`pokemon/${p.name}`}>
       <a className={styles.link}>
         <div className={styles.card}>

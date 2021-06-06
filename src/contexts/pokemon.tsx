@@ -2,46 +2,38 @@ import React, {
   FunctionComponent,
   createContext,
   useContext,
-  useEffect,
   useMemo,
   useState
 } from 'react'
 import { initState } from '~consts/pokemon'
 import useCatchPokemon from '~hooks/useCatchPokemon'
-import { Pokemon } from '~interfaces/pokemon'
 
 const PokemonCtx = createContext(initState)
 
 const PokemonProvider: FunctionComponent = ({ children }) => {
+  const { data, isValidating, error } = useCatchPokemon(151)
   const [state, setState] = useState(initState)
-  // const [offset] = useState(initState.offset)
-  const [currentPage, setCurrentPage] = useState(initState.currentPage)
-  const [pageItems, setPageItems] = useState<Pokemon[]>([])
-
-  const response = useCatchPokemon(151)
-  const { data, isValidating, error } = response
-
-  useEffect(() => {
-    setState({ ...state, data, isValidating, error })
-  }, [response.data, pageItems])
 
   useMemo(() => {
-    if (state.data) {
-      const items = state.data.slice(0, 12)
-      setPageItems(items)
-    }
-  }, [state.data])
+    setState({
+      ...state,
+      data,
+      isValidating,
+      error,
+      currentItems: data?.slice(0, 12)
+    })
+  }, [data])
 
-  const setPaginationPage = (p: number) => {
-    const items = state.data.slice(p * 12, 12 * (p + 1))
-    setCurrentPage(p)
-    setPageItems(items)
+  const setPaginationPage = (currentPage: number) => {
+    const currentItems = state.data.slice(
+      currentPage * 12,
+      12 * (currentPage + 1)
+    )
+    setState({ ...state, currentItems, currentPage })
   }
 
   const providerValue = {
     ...state,
-    currentPage,
-    pageItems,
     setPaginationPage
   }
 

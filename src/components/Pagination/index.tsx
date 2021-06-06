@@ -4,9 +4,9 @@ import { usePokemonProvider } from '~contexts/pokemon'
 import styles from './pagination.module.scss'
 
 interface Props {
-  minLimit: number
-  maxLimit: number
-  pageNumLimit: number
+  minLimit?: number
+  maxLimit?: number
+  pageNumLimit?: number
 }
 
 const Pagination: FunctionComponent<Props> = ({
@@ -62,8 +62,6 @@ const Pagination: FunctionComponent<Props> = ({
       setMinPageLimit(minPageLimit + pageNumberLimit)
     }
   }
-
-  console.log(currentPage, pageLimit[1] - 1)
 
   const backButton = (
     <button disabled={currentPage === 0} type="button" onClick={handlePrevPage}>
