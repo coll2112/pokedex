@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePokemonProvider } from '~contexts/pokemon'
 import pokemonIdPrefix from '~utils/pokemonIdPrefix'
 import Pagination from '~/components/Pagination'
@@ -8,8 +9,6 @@ import styles from './pokemon.module.scss'
 
 const Pokemon = () => {
   const { isValidating, error, currentItems } = usePokemonProvider()
-
-  console.log(currentItems)
 
   if (error) {
     return (
@@ -46,10 +45,12 @@ const Pokemon = () => {
     <Link key={p.name} href={`pokemon/${p.name}`}>
       <a className={styles.link}>
         <div className={styles.card}>
-          <img
+          <Image
             alt={`front sprite of ${p.name}`}
             className={styles.sprite}
+            height={100}
             src={p.sprites.front}
+            width={100}
           />
           <div className={styles.info}>
             <div className={styles.number}>{pokemonIdPrefix(p.id)}</div>

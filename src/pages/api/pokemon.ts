@@ -4,9 +4,9 @@ import { NextApiRequest, NextApiResponse } from 'next'
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const {
     method,
-    query: { limit, offset }
+    query: { limit }
   } = req
-  const url = `${process.env.POKE_URL}pokemon?limit=${limit}&offset=${offset}`
+  const url = `${process.env.POKE_URL}pokemon?limit=${limit}`
 
   if (method !== 'GET') {
     return res.status(400).send('Invalid HTTP Method')

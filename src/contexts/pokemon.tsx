@@ -20,7 +20,7 @@ const PokemonProvider: FunctionComponent = ({ children }) => {
       data,
       isValidating,
       error,
-      currentItems: data?.slice(0, 12)
+      currentItems: data && data.length > 0 && data?.slice(0, 12)
     })
   }, [data])
 

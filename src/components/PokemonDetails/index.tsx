@@ -1,15 +1,16 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
+import Image from 'next/image'
 import usePokeDetails from '~hooks/usePokeDetails'
 import pokemonIdPrefix from '~utils/pokemonIdPrefix'
 
 import styles from './pokemonDetails.module.scss'
 
 const PokemonDetails = ({ params }) => {
-  const { pokeDetails, isValidating, error } = usePokeDetails(params)
+  const { data, isValidating, error } = usePokeDetails(params)
   const [toggleImg, setToggleImg] = useState(false)
 
-  if (isValidating || !pokeDetails) {
+  if (isValidating) {
     return <h3>Loading...</h3>
   }
 
@@ -17,21 +18,25 @@ const PokemonDetails = ({ params }) => {
     return <h1>error yo</h1>
   }
 
-  const pokeTypes = pokeDetails.types.map((t) => (
+  const pokeTypes = data.types.map((t) => (
     <p key={t.type.name} className={styles.typeName}>
       {t.type.name}
     </p>
   ))
 
   const switchImg = toggleImg ? (
-    <img
-      alt={`Front Default Shiny Sprite of ${pokeDetails.name}`}
-      src={pokeDetails.sprites.front_shiny}
+    <Image
+      alt={`Front Default Shiny Sprite of ${data.name}`}
+      height={200}
+      src={data.sprites.front_shiny}
+      width={200}
     />
   ) : (
-    <img
-      alt={`Front Default Sprite of ${pokeDetails.name}`}
-      src={pokeDetails.sprites.front_default}
+    <Image
+      alt={`Front Default Sprite of ${data.name}`}
+      height={200}
+      src={data.sprites.front_default}
+      width={200}
     />
   )
 
@@ -39,8 +44,8 @@ const PokemonDetails = ({ params }) => {
     <div className={styles.container}>
       <div className={styles.headerContainer}>
         <div className={styles.title}>
-          <h3 className={styles.name}>{pokeDetails.name}</h3>
-          <h3 className={styles.number}>{pokemonIdPrefix(pokeDetails.id)}</h3>
+          <h3 className={styles.name}>{data.name}</h3>
+          <h3 className={styles.number}>{pokemonIdPrefix(data.id)}</h3>
         </div>
         <div className={styles.imgContainer}>{switchImg}</div>
       </div>
@@ -64,11 +69,11 @@ const PokemonDetails = ({ params }) => {
       </div>
       <div className={styles.statContainer}>
         <p className={styles.statTitle}>Weight:</p>
-        <p className={styles.stat}>{pokeDetails.weight}</p>
+        <p className={styles.stat}>{data.weight}</p>
       </div>
       <div className={styles.statContainer}>
         <p className={styles.statTitle}>Height: </p>
-        <p className={styles.stat}>{pokeDetails.height}</p>
+        <p className={styles.stat}>{data.height}</p>
       </div>
     </div>
   )
