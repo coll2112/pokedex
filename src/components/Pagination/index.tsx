@@ -1,38 +1,111 @@
-import React from 'react'
+import React, { FunctionComponent, useMemo, useState } from 'react'
 import { usePokemonProvider } from '~contexts/pokemon'
 
 import styles from './pagination.module.scss'
 
-const Pagination = () => {
-  const { page, pageItems, setPaginationPage } = usePokemonProvider()
-  //   const maxItems = Math.ceil(data.length / 12)
+interface Props {
+  minLimit: number
+  maxLimit: number
+  pageNumLimit: number
+}
 
-  const buttons = pageItems.map((p, i) => (
-    <button
-      key={p.name}
-      className={styles.button}
-      type="button"
-      onClick={() => setPaginationPage(i)}
-    >
-      {i + 1}
+const Pagination: FunctionComponent<Props> = ({
+  minLimit = 0,
+  maxLimit = 5,
+  pageNumLimit = 3
+}) => {
+  const { data, currentPage, setPaginationPage } = usePokemonProvider()
+  const [pageLimit, setPageLimit] = useState<Array<number>>([])
+  const [pageNumberLimit] = useState<number>(pageNumLimit)
+  const [maxPageLimit, setMaxPageLimit] = useState<number>(maxLimit)
+  const [minPageLimit, setMinPageLimit] = useState<number>(minLimit)
+
+  useMemo(() => {
+    const amountOfPages: Array<number> = []
+    for (let i = 1; i <= Math.ceil(data.length / 12); i += 1) {
+      amountOfPages.push(i)
+    }
+
+    setPageLimit(amountOfPages)
+  }, [currentPage])
+
+  const buttons = pageLimit.map((number) => {
+    if (number < maxPageLimit + 1 && number > minPageLimit) {
+      return (
+        <button
+          key={number}
+          className={styles.button}
+          type="button"
+          onClick={() => setPaginationPage(number - 1)}
+        >
+          {number}
+        </button>
+      )
+    }
+    return null
+  })
+
+  const handlePrevPage = () => {
+    setPaginationPage(currentPage - 1)
+
+    if ((currentPage - 1) % pageNumberLimit === 0) {
+      setMaxPageLimit(maxPageLimit - pageNumberLimit)
+      setMinPageLimit(minPageLimit - pageNumberLimit)
+    }
+  }
+
+  const handleNextPage = () => {
+    setPaginationPage(currentPage + 1)
+
+    if (currentPage + 1 > maxPageLimit) {
+      setMaxPageLimit(maxPageLimit + pageNumberLimit)
+      setMinPageLimit(minPageLimit + pageNumberLimit)
+    }
+  }
+
+  console.log(currentPage, pageLimit[1] - 1)
+
+  const backButton = (
+    <button disabled={currentPage === 0} type="button" onClick={handlePrevPage}>
+      Prev
     </button>
-  ))
+  )
 
-  console.log(page)
+  const nextButton = (
+    <button
+      disabled={currentPage === pageLimit.length - 1}
+      type="button"
+      onClick={handleNextPage}
+    >
+      Next
+    </button>
+  )
 
-  //   const backButton = (
-  //     <button type="button" onClick={() => setPaginationPage()}>
-  //       Back
-  //     </button>
-  //   )
+  let elipNext
+  if (pageLimit.length > maxPageLimit) {
+    elipNext = (
+      <button type="button" onClick={handleNextPage}>
+        {' '}
+        &hellip;{' '}
+      </button>
+    )
+  }
 
-  //   const forwardButton = (
-  //     <button type="button" onClick={() => setPaginationPage()}>
-  //       Forward
-  //     </button>
-  //   )
+  let elipPrev
+  if (minPageLimit >= 1) {
+    elipPrev = (
+      <button type="button" onClick={handlePrevPage}>
+        {' '}
+        &hellip;{' '}
+      </button>
+    )
+  }
 
-  return <div className={styles.container}>{buttons}</div>
+  return (
+    <div className={styles.container}>
+      {backButton} {elipPrev} {buttons} {elipNext} {nextButton}
+    </div>
+  )
 }
 
 export default Pagination

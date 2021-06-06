@@ -18,6 +18,6 @@ export const initState: InitState = {
   },
   setPaginationPage: () => null,
   offset: 0,
-  page: 0,
+  currentPage: 0,
   pageItems: []
 }

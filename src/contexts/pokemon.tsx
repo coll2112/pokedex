@@ -15,7 +15,7 @@ const PokemonCtx = createContext(initState)
 const PokemonProvider: FunctionComponent = ({ children }) => {
   const [state, setState] = useState(initState)
   // const [offset] = useState(initState.offset)
-  const [page, setPage] = useState(initState.page)
+  const [currentPage, setCurrentPage] = useState(initState.currentPage)
   const [pageItems, setPageItems] = useState<Pokemon[]>([])
 
   const response = useCatchPokemon(151)
@@ -33,14 +33,14 @@ const PokemonProvider: FunctionComponent = ({ children }) => {
   }, [state.data])
 
   const setPaginationPage = (p: number) => {
-    setPage(p)
     const items = state.data.slice(p * 12, 12 * (p + 1))
+    setCurrentPage(p)
     setPageItems(items)
   }
 
   const providerValue = {
     ...state,
-    page,
+    currentPage,
     pageItems,
     setPaginationPage
   }
