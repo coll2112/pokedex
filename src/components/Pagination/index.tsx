@@ -146,10 +146,10 @@ const Pagination: FunctionComponent<Props> = ({
         {elipNext}
         {nextButton}
       </div>
+      {learnMoreBtn}
       <p className={styles.pageNumber}>
         Pokemon {currentItems.length}/{data.length}
       </p>
-      {learnMoreBtn}
     </div>
   )
 }
