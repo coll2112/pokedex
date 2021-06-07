@@ -20,15 +20,15 @@ const PokemonProvider: FunctionComponent = ({ children }) => {
       data,
       isValidating,
       error,
+      currentPage: 1,
       currentItems: data && data.length > 0 && data?.slice(0, 12)
     })
   }, [data])
 
-  const setPaginationPage = (currentPage: number) => {
-    const currentItems = state.data.slice(
-      currentPage * 12,
-      12 * (currentPage + 1)
-    )
+  const setPaginationPage = (currentPage: number, itemsPerPage: number) => {
+    const indexOfLastItem = currentPage * itemsPerPage
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage
+    const currentItems = state.data.slice(indexOfFirstItem, indexOfLastItem)
     setState({ ...state, currentItems, currentPage })
   }
 

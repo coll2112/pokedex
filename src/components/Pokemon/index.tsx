@@ -63,10 +63,9 @@ const Pokemon = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.headerContainer}>
-        <Pagination />
-      </div>
+      <div className={styles.headerContainer} />
       {pokemonMap}
+      <Pagination />
     </div>
   )
 }
