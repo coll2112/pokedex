@@ -1,0 +1,18 @@
+@use 'global' as *;
+
+.errorContainer {
+  margin: auto;
+  text-align: center;
+  text-shadow: 1px 2px 3px $shadow;
+}
+
+.subtext {
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.error {
+  font-weight: 700;
+  font-size: 18px;
+}

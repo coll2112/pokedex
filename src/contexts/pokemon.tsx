@@ -1,6 +1,7 @@
 import React, {
   FunctionComponent,
   createContext,
+  useCallback,
   useContext,
   useMemo,
   useState
@@ -25,12 +26,15 @@ const PokemonProvider: FunctionComponent = ({ children }) => {
     })
   }, [data])
 
-  const setPaginationPage = (currentPage: number, itemsPerPage: number) => {
-    const indexOfLastItem = currentPage * itemsPerPage
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage
-    const currentItems = state.data.slice(indexOfFirstItem, indexOfLastItem)
-    setState({ ...state, currentItems, currentPage })
-  }
+  const setPaginationPage = useCallback(
+    (currentPage: number, itemsPerPage: number) => {
+      const indexOfLastItem = currentPage * itemsPerPage
+      const indexOfFirstItem = indexOfLastItem - itemsPerPage
+      const currentItems = state.data.slice(indexOfFirstItem, indexOfLastItem)
+      setState({ ...state, currentItems, currentPage })
+    },
+    [state.currentPage, state.currentItems]
+  )
 
   const providerValue = {
     ...state,
