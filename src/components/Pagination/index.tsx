@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { FunctionComponent, useMemo, useState } from 'react'
+import React, { FunctionComponent, useEffect, useMemo, useState } from 'react'
 import { usePokemonProvider } from '~contexts/pokemon'
 
 import styles from './pagination.module.scss'
@@ -11,6 +11,8 @@ interface Props {
   maxItemsOnPage?: number
 }
 
+// TODO: strip logic from context and put into parent component
+// Pass data to pagination instead
 const Pagination: FunctionComponent<Props> = ({
   minPageNumber = 0,
   maxPageNumber = 5,
@@ -41,7 +43,7 @@ const Pagination: FunctionComponent<Props> = ({
     setPageLimit(amountOfPages)
   }, [currentPage, itemsPerPage])
 
-  useMemo(() => {
+  useEffect(() => {
     setPaginationPage(currentPage, itemsPerPage)
   }, [currentPage, itemsPerPage])
 
@@ -106,23 +108,23 @@ const Pagination: FunctionComponent<Props> = ({
     </button>
   )
 
-  let elipNext
-  if (pageLimit.length > maxPageLimit) {
-    elipNext = (
-      <button className={styles.button} type="button" onClick={handleNextPage}>
-        &hellip;
-      </button>
-    )
-  }
+  // let elipNext
+  // if (pageLimit.length > maxPageLimit) {
+  //   elipNext = (
+  //     <button className={styles.button} type="button" onClick={handleNextPage}>
+  //       &hellip;
+  //     </button>
+  //   )
+  // }
 
-  let elipPrev
-  if (minPageLimit >= 1) {
-    elipPrev = (
-      <button className={styles.button} type="button" onClick={handlePrevPage}>
-        &hellip;
-      </button>
-    )
-  }
+  // let elipPrev
+  // if (minPageLimit >= 1) {
+  //   elipPrev = (
+  //     <button className={styles.button} type="button" onClick={handlePrevPage}>
+  //       &hellip;
+  //     </button>
+  //   )
+  // }
 
   let learnMoreBtn
   if (currentItems.length !== data.length) {
@@ -139,13 +141,9 @@ const Pagination: FunctionComponent<Props> = ({
 
   return (
     <div className={styles.container}>
-      <div className={styles.pagination}>
-        {backButton}
-        {elipPrev}
-        {buttons}
-        {elipNext}
-        {nextButton}
-      </div>
+      {backButton}
+      {buttons}
+      {nextButton}
       {learnMoreBtn}
       <p className={styles.pageNumber}>
         Pokemon {currentItems.length}/{data.length}

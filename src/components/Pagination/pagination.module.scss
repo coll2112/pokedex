@@ -2,7 +2,8 @@
 
 .container {
   width: 100%;
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .button {
@@ -16,6 +17,10 @@
   transition: background-color 0.2s ease-in-out;
 
   &:hover {
+    background: lighten($red, 15);
+  }
+
+  &:focus {
     background: lighten($red, 15);
   }
 }
