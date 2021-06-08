@@ -1,158 +1,91 @@
 @use 'global' as *;
 
 .container {
-  width: 100%;
-  height: 100%;
-  margin-top: 60px;
-
-  @include mobile {
-    margin: auto;
-  }
-
-  @include tablet {
-    width: 600px;
-  }
-}
-
-.headerContainer {
-  @include mobile {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-start;
-    background: $peach;
-    border: 2px solid $white;
-    border-radius: 5px;
-  }
+  margin: auto;
 }
 
 .title {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+  align-content: center;
+  text-transform: uppercase;
   border: 1px solid $white;
-  background: $peach;
+  padding: 10px 10px;
   border-radius: 5px;
-  padding: 5px 10px;
-
-  @include mobile {
-    height: 100%;
-    flex-direction: column-reverse;
-    align-items: flex-end;
-    border: none;
-    padding: 15px;
-  }
 }
 
 .name {
   margin: 0;
-  text-transform: capitalize;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .number {
-  font-weight: 300;
   margin: 0;
+  font-weight: 300;
 }
 
 .imgContainer {
-  width: 100%;
   display: flex;
   justify-content: space-between;
-
-  & > img {
-    width: 100%;
-    height: 100%;
-    background: $peach;
-    border-radius: 50%;
-    border: 3px solid $white;
-
-    @include mobile {
-      max-width: 200px;
-      border: none;
-      padding: 0;
-    }
-  }
-}
-
-.imgTitle {
-  text-align: center;
-  margin-bottom: 30px;
 }
 
 .btnContainer {
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  width: 100%;
   margin-bottom: 30px;
 }
 
 .button {
-  border: 2px solid $white;
-  border-radius: 5px;
-  background: $peach;
-  color: $white;
-  font-weight: 600;
-  padding: 5px 5px;
   font-size: 14px;
-  width: 150px;
-  cursor: pointer;
+  font-weight: 500;
+  background: transparent;
+  border: 1px solid $white;
+  color: $white;
+  padding: 10px 5px;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
 
-  &:hover {
-    background: darken($peach, 10);
+  &:first-of-type {
+    margin-right: 5px;
   }
 
-  &:nth-of-type(2) {
-    margin-top: 0;
-  }
-
-  @include mobile {
-    width: 320px;
-    padding: 10px;
-    font-size: 18px;
-  }
-
-  @include tablet {
-    width: 280px;
-    padding: 15px;
-    font-size: 16px;
+  &:last-of-type {
+    margin-left: 5px;
   }
 }
 
-.statContainer {
+.statContainer,
+.typesContainer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   text-transform: uppercase;
 }
 
-.statTitle {
-  font-weight: 800;
+.stat {
+  width: 100px;
 }
 
-.statSuffix {
-  text-transform: lowercase;
+.statTitle {
+  font-weight: 700;
+  width: 80px;
 }
 
 .types {
   display: flex;
-  justify-content: space-between;
+  justify-content: stretch;
+  text-transform: uppercase;
+  margin-top: 5px;
+  margin-left: 10px;
 }
 
-.typeName,
-.stat {
-  border: 1px solid $white;
+.type {
+  background: rgb(150, 165, 80);
   border-radius: 5px;
-  padding: 2px 5px;
-  background: $peach;
-  font-weight: 500;
+  padding: 2px;
+  font-size: 12px;
 
-  &:last-child {
-    margin-left: 10px;
-  }
-
-  @include mobile {
-    width: 150px;
-    text-align: center;
+  &:last-of-type {
+    margin-left: 5px;
   }
 }
