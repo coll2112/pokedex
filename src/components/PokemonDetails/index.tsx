@@ -25,6 +25,7 @@ const PokemonDetails = ({ params }) => {
   // converts from decimetres to feet
   const convertHeight = (data.height / 3.048).toFixed(1).replace('.', "'")
 
+  // TODO: create lookup table to color code types
   const pokeTypes = data.types.map((t) => (
     <p key={t.type.name} className={styles.type}>
       {t.type.name}
