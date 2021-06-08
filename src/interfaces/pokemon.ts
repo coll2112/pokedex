@@ -40,4 +40,7 @@ export interface InitState {
     errorMessage: string
     status: string
   }
+  setPaginationPage: (currentPage: number, itemsPerPage: number) => void
+  currentPage: number
+  currentItems: Pokemon[]
 }

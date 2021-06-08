@@ -6,23 +6,40 @@ import React, {
   useState
 } from 'react'
 import { initState } from '~consts/pokemon'
-import { InitState } from '~interfaces/pokemon'
 import useCatchPokemon from '~hooks/useCatchPokemon'
 
 const PokemonCtx = createContext(initState)
 
 const PokemonProvider: FunctionComponent = ({ children }) => {
-  const response = useCatchPokemon(151)
-  const [state, setState] = useState<InitState>(initState)
-  const { data, isValidating, error } = { ...response }
+  const { data, isValidating, error } = useCatchPokemon(151)
+  const [state, setState] = useState(initState)
 
   useMemo(() => {
-    if (response) {
-      setState({ data, isValidating, error })
-    }
-  }, [response.data])
+    setState({
+      ...state,
+      data,
+      isValidating,
+      error,
+      currentPage: 1,
+      currentItems: data && data.length > 0 && data?.slice(0, 12)
+    })
+  }, [data])
 
-  return <PokemonCtx.Provider value={state}>{children}</PokemonCtx.Provider>
+  const setPaginationPage = (currentPage: number, itemsPerPage: number) => {
+    const indexOfLastItem = currentPage * itemsPerPage
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage
+    const currentItems = state.data.slice(indexOfFirstItem, indexOfLastItem)
+    setState({ ...state, currentItems, currentPage })
+  }
+
+  const providerValue = {
+    ...state,
+    setPaginationPage
+  }
+
+  return (
+    <PokemonCtx.Provider value={providerValue}>{children}</PokemonCtx.Provider>
+  )
 }
 
 export default PokemonProvider
