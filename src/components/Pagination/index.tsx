@@ -84,7 +84,9 @@ const Pagination: FunctionComponent<Props> = ({
     }
   }
 
-  const handleLoadMore = () => setItemsPerPage(itemsPerPage + maxPageLimit)
+  const handleLoadMore = () => {
+    setItemsPerPage(itemsPerPage + maxPageLimit)
+  }
 
   const backButton = (
     <button
@@ -141,9 +143,11 @@ const Pagination: FunctionComponent<Props> = ({
 
   return (
     <div className={styles.container}>
-      {backButton}
-      {buttons}
-      {nextButton}
+      <div className={styles.mainPaginationContainer}>
+        {backButton}
+        {buttons}
+        {nextButton}
+      </div>
       {learnMoreBtn}
       <p className={styles.pageNumber}>
         Pokemon {currentItems.length}/{data.length}

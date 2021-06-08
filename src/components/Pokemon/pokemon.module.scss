@@ -1,84 +1,73 @@
 @use 'global' as *;
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   width: 100%;
+  margin: auto;
+}
+
+.pokeContainer {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  margin-bottom: 15px;
+  margin-top: 15px;
 
   @include mobile {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    align-self: start;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin-bottom: 30px;
   }
-}
 
-.headerContainer {
-  text-align: center;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  margin-top: 60px;
-
-  @include mobile {
-    justify-content: flex-start;
-    margin-top: 0px;
-  }
-}
-
-.headerText {
-  margin-right: 5px;
-}
-
-.headerText,
-.headerCount {
-  font-size: 22px;
-
-  @include mobile {
-    font-size: 32px;
-    font-weight: 300;
+  @include tablet {
+    display: grid;
+    align-self: start;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
   }
 }
 
 .link {
   text-decoration: none;
-  margin: 10px 0;
+  width: 100%;
 }
 
 .card {
   background: $peach;
-  width: 300px;
-  padding: 10px 25px;
   border-radius: 5px;
+  padding: 15px;
   text-transform: uppercase;
   color: $white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid $white;
   text-align: right;
-  transition: background-color 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 1px 3px 4px $shadow;
 
   &:hover {
-    background-color: darken($peach, 10);
+    background-color: darken($peach, 5);
   }
 
   @include mobile {
     min-width: 100%;
-    // margin: 0 20px;
     flex-direction: column;
     text-align: center;
+  }
+
+  @include tablet {
+    padding: 30px 40px;
   }
 }
 
 .sprite {
-  background: $red;
-  border: 1px solid $white;
+  background: rgba($color: $red, $alpha: 0.5);
   border-radius: 50%;
-  padding: 5px;
+  padding: 5px !important;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 3px 3px 4px $shadow inset;
 
   @include mobile {
     padding: 15px;
@@ -86,59 +75,33 @@
   }
 }
 
-.errorContainer {
-  margin: auto;
-}
-
-.error {
-  font-size: 20px;
-  text-transform: uppercase;
-}
-
-.loading {
-  margin: auto;
-  width: 100%;
-  text-align: center;
-  font-weight: 300;
-}
-
-.loadingDot {
-  animation: loading 1s infinite;
-
-  &:nth-of-type(2) {
-    animation-delay: 0.25s;
-  }
-
-  &:nth-of-type(3) {
-    animation-delay: 0.5s;
+.info {
+  @include mobile {
+    margin-top: 10px;
   }
 }
 
-.gifContainer {
-  width: 100%;
-  position: relative;
+.headerNumber,
+.bodyNumber {
+  font-weight: 800;
+  font-size: 14px;
 }
 
-.gif {
-  position: absolute;
-  left: -50%;
-  animation: pikachuDash 6s infinite 1.5s;
-}
-
-@keyframes loading {
-  50% {
-    color: transparent;
+.bodyNumber {
+  display: block;
+  @include mobile {
+    display: none;
   }
 }
 
-@keyframes pikachuDash {
-  0% {
-    left: -60%;
+.headerNumber {
+  display: none;
+  @include mobile {
+    margin-bottom: 10px;
+    display: block;
   }
-  33% {
-    left: 80;
-  }
-  100% {
-    left: 180%;
-  }
+}
+
+.name {
+  margin: 0;
 }

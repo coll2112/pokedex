@@ -6,8 +6,11 @@
   margin-top: 60px;
 
   @include mobile {
-    width: 600px;
     margin: auto;
+  }
+
+  @include tablet {
+    width: 600px;
   }
 }
 
@@ -104,6 +107,12 @@
   }
 
   @include mobile {
+    width: 320px;
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  @include tablet {
     width: 280px;
     padding: 15px;
     font-size: 16px;
@@ -114,10 +123,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-transform: uppercase;
 }
 
 .statTitle {
   font-weight: 800;
+}
+
+.statSuffix {
+  text-transform: lowercase;
 }
 
 .types {
@@ -138,13 +152,7 @@
   }
 
   @include mobile {
-    width: 250px;
+    width: 150px;
     text-align: center;
   }
-}
-
-.statContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
