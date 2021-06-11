@@ -17,10 +17,12 @@
 
   &:hover {
     background: lighten($red, 15);
+    color: $white;
   }
 
   &:focus {
     background: lighten($red, 15);
+    color: $white;
   }
 }
 
@@ -36,10 +38,6 @@
 .currentPage {
   background: $white;
   color: $red;
-
-  &:hover {
-    background: $white;
-  }
 }
 
 .disabled {

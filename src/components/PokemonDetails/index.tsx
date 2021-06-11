@@ -37,6 +37,7 @@ const PokemonDetails = ({ params }) => {
       alt={`Sprite of ${data.name}`}
       className={styles.sprite}
       height={200}
+      loading="lazy"
       src={toggleImg ? data.sprites.front_shiny : data.sprites.front_default}
       width={200}
     />
@@ -46,6 +47,7 @@ const PokemonDetails = ({ params }) => {
       alt={`Sprite of ${data.name}`}
       className={styles.sprite}
       height={200}
+      loading="lazy"
       src={toggleImg ? data.sprites.back_shiny : data.sprites.back_default}
       width={200}
     />
