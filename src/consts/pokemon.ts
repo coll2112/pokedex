@@ -1,4 +1,13 @@
-import { InitState } from '~interfaces/pokemon'
+import { InitState, Pokemon } from '~interfaces/pokemon'
+
+export const mockPokemon: Pokemon = {
+  name: 'name',
+  id: 0,
+  sprites: {
+    front: 'front',
+    back: 'back'
+  }
+}
 
 export const initState: InitState = {
   data: [

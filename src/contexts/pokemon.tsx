@@ -22,7 +22,7 @@ const PokemonProvider: FunctionComponent = ({ children }) => {
       isValidating,
       error,
       currentPage: 1,
-      currentItems: data && data.length > 0 && data?.slice(0, 12)
+      currentItems: data && data.length > 0 && data.slice(0, 12)
     })
   }, [data])
 
