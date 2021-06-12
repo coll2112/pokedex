@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { FunctionComponent, useEffect, useMemo, useState } from 'react'
+import React, { FunctionComponent, useMemo, useState } from 'react'
 import { usePokemonProvider } from '~contexts/pokemon'
 
 import styles from './pagination.module.scss'
@@ -43,28 +43,32 @@ const Pagination: FunctionComponent<Props> = ({
     setPageLimit(amountOfPages)
   }, [currentPage, itemsPerPage])
 
-  useEffect(() => {
+  useMemo(() => {
     setPaginationPage(currentPage, itemsPerPage)
   }, [currentPage, itemsPerPage])
 
-  const buttons = pageLimit.map((number) => {
-    if (number < maxPageLimit + 1 && number > minPageLimit) {
-      return (
-        <button
-          key={number}
-          className={clsx(
-            styles.button,
-            currentPage === number && styles.currentPage
-          )}
-          type="button"
-          onClick={() => setPaginationPage(number, itemsPerPage)}
-        >
-          {number}
-        </button>
-      )
-    }
-    return null
-  })
+  const buttons = useMemo(
+    () =>
+      pageLimit.map((number) => {
+        if (number < maxPageLimit + 1 && number > minPageLimit) {
+          return (
+            <button
+              key={number}
+              className={clsx(
+                styles.button,
+                currentPage === number && styles.currentPage
+              )}
+              type="button"
+              onClick={() => setPaginationPage(number, itemsPerPage)}
+            >
+              {number}
+            </button>
+          )
+        }
+        return null
+      }),
+    [itemsPerPage, currentPage, pageLimit]
+  )
 
   const handlePrevPage = () => {
     setPaginationPage(currentPage - 1, itemsPerPage)
@@ -128,9 +132,9 @@ const Pagination: FunctionComponent<Props> = ({
   //   )
   // }
 
-  let learnMoreBtn
+  let loadMoreBtn
   if (currentItems.length !== data.length) {
-    learnMoreBtn = (
+    loadMoreBtn = (
       <button
         className={clsx(styles.button, styles.loadMore)}
         type="button"
@@ -148,7 +152,7 @@ const Pagination: FunctionComponent<Props> = ({
         {buttons}
         {nextButton}
       </div>
-      {learnMoreBtn}
+      {loadMoreBtn}
       <p className={styles.pageNumber}>
         Pokemon {currentItems.length}/{data.length}
       </p>

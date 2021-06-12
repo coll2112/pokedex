@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePokemonProvider } from '~contexts/pokemon'
@@ -12,6 +12,32 @@ import styles from './pokemon.module.scss'
 const Pokemon = () => {
   const { isValidating, error, currentItems } = usePokemonProvider()
 
+  const pokemonMap = useMemo(
+    () =>
+      currentItems?.map((p) => (
+        <Link key={p.name} href={`pokemon/${p.name}`}>
+          <a className={styles.link}>
+            <div className={styles.card}>
+              <div className={styles.headerNumber}>{pokemonIdPrefix(p.id)}</div>
+              <Image
+                alt={`front sprite of ${p.name}`}
+                className={styles.sprite}
+                height={125}
+                loading="lazy"
+                src={p.sprites.front}
+                width={125}
+              />
+              <div className={styles.info}>
+                <div className={styles.bodyNumber}>{pokemonIdPrefix(p.id)}</div>
+                <p className={styles.name}>{p.name}</p>
+              </div>
+            </div>
+          </a>
+        </Link>
+      )),
+    [currentItems]
+  )
+
   if (error) {
     return <Error />
   }
@@ -19,27 +45,6 @@ const Pokemon = () => {
   if (!currentItems && isValidating) {
     return <Loading text="Catching Pokemon" />
   }
-
-  const pokemonMap = currentItems.map((p) => (
-    <Link key={p.name} href={`pokemon/${p.name}`}>
-      <a className={styles.link}>
-        <div className={styles.card}>
-          <div className={styles.headerNumber}>{pokemonIdPrefix(p.id)}</div>
-          <Image
-            alt={`front sprite of ${p.name}`}
-            className={styles.sprite}
-            height={125}
-            src={p.sprites.front}
-            width={125}
-          />
-          <div className={styles.info}>
-            <div className={styles.bodyNumber}>{pokemonIdPrefix(p.id)}</div>
-            <p className={styles.name}>{p.name}</p>
-          </div>
-        </div>
-      </a>
-    </Link>
-  ))
 
   return (
     <div className={styles.container}>

@@ -10,7 +10,7 @@ const axiosFetcher = async (url: string) => {
   }
 }
 
-const usePokeDetails = (name) => {
+const usePokeDetails = (name: string) => {
   const { data, isValidating, error } = useSWR(
     `/api/details?name=${name}`,
     axiosFetcher
