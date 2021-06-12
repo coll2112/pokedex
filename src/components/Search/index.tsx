@@ -12,10 +12,6 @@ const Search: FunctionComponent = () => {
   }
 
   const handleSearch = async () => {
-    console.log('clicked')
-    // if (searchInput === router.query.name) {
-    //   return
-    // }
     await router.push(
       {
         pathname: '/pokemon/',
@@ -27,10 +23,14 @@ const Search: FunctionComponent = () => {
 
   return (
     <div className={styles.container}>
-      <input name="search" placeholder="Search for..." onChange={handleInput} />
-      <button type="button" onClick={handleSearch}>
-        Search
-      </button>
+      <form onSubmit={handleSearch}>
+        <input
+          name="search"
+          placeholder="Search for..."
+          onChange={handleInput}
+        />
+        <button type="submit">Search</button>
+      </form>
     </div>
   )
 }
