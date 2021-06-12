@@ -32,7 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return newObj
     })
 
-    const pokeData = await Promise.all(pokeUrlArr).then(async (r) => r)
+    const pokeData = await Promise.all(pokeUrlArr).then(async (p) => p)
 
     if (status !== 200) {
       return res.status(status).send(statusText)

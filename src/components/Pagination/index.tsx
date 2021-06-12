@@ -132,9 +132,9 @@ const Pagination: FunctionComponent<Props> = ({
   //   )
   // }
 
-  let learnMoreBtn
+  let loadMoreBtn
   if (currentItems.length !== data.length) {
-    learnMoreBtn = (
+    loadMoreBtn = (
       <button
         className={clsx(styles.button, styles.loadMore)}
         type="button"
@@ -152,7 +152,7 @@ const Pagination: FunctionComponent<Props> = ({
         {buttons}
         {nextButton}
       </div>
-      {learnMoreBtn}
+      {loadMoreBtn}
       <p className={styles.pageNumber}>
         Pokemon {currentItems.length}/{data.length}
       </p>

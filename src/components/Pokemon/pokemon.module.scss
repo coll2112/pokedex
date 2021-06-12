@@ -51,6 +51,10 @@
     background-color: darken($peach, 5);
   }
 
+  &:focus {
+    background-color: darken($peach, 5);
+  }
+
   @include mobile {
     min-width: 100%;
     flex-direction: column;
