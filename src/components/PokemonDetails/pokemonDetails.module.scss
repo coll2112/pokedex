@@ -50,12 +50,6 @@
   }
 }
 
-// .sprite {
-//   background: rgba($color: $peach, $alpha: 0.5);
-//   box-shadow: 3px 3px 4px $shadow inset;
-//   border-radius: 100px;
-// }
-
 .btnContainer {
   display: grid;
   gap: 15px;
@@ -80,6 +74,11 @@
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 1px 4px 4px $shadow;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background: $peachBtnHover;
+  }
 
   @include mobile {
     font-size: 18px;

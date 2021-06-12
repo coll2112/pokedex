@@ -48,11 +48,11 @@
   box-shadow: 1px 3px 4px $shadow;
 
   &:hover {
-    background-color: darken($peach, 5);
+    background-color: $peachBtnHover;
   }
 
   &:focus {
-    background-color: darken($peach, 5);
+    background-color: $peachBtnHover;
   }
 
   @include mobile {
