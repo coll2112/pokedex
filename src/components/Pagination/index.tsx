@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { FunctionComponent, useMemo, useState } from 'react'
+import React, { FunctionComponent, useEffect, useMemo, useState } from 'react'
 import { usePokemonProvider } from '~contexts/pokemon'
 
 import styles from './pagination.module.scss'
@@ -43,7 +43,7 @@ const Pagination: FunctionComponent<Props> = ({
     setPageLimit(amountOfPages)
   }, [currentPage, itemsPerPage])
 
-  useMemo(() => {
+  useEffect(() => {
     setPaginationPage(currentPage, itemsPerPage)
   }, [currentPage, itemsPerPage])
 
