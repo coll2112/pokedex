@@ -11,15 +11,14 @@
   top: 8px;
   pointer-events: none;
   transition: all 0.2s ease-in-out;
-  color: $white;
+  color: rgba($white, 0.5);
 }
 
 .input {
-  border: none;
   padding: 7px 10px;
   border-radius: 5px 0 0 5px;
   background: $darkPeach;
-  border: 1px solid $white;
+  border: 1px solid rgba($white, 0.8);
   color: $white;
 
   &:focus + .label,
@@ -29,10 +28,11 @@
     left: 0px;
     transform: scale(0.8);
     background: $darkPeach;
+    color: $white;
   }
 
   &:focus {
-    border-top: 10%;
+    border: 1px solid $white;
   }
 }
 
@@ -47,5 +47,15 @@
 
   &:hover {
     background: $redBtnHover;
+  }
+
+  &:disabled {
+    color: rgba($white, 0.4);
+    cursor: not-allowed;
+    background: rgba($red, 0.4);
+
+    &:hover {
+      background: rgba($red, 0.4);
+    }
   }
 }

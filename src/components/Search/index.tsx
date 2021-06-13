@@ -12,10 +12,8 @@ const Search: FunctionComponent = () => {
   useMemo(() => {
     if (searchInput.length > 0) {
       setHasValue(true)
-      console.log('true')
     } else {
       setHasValue(false)
-      console.log('false')
     }
   }, [searchInput])
 
@@ -45,7 +43,11 @@ const Search: FunctionComponent = () => {
           <label className={styles.label} htmlFor="search">
             Enter Pokemon
           </label>
-          <button className={styles.submitBtn} type="submit">
+          <button
+            className={clsx(styles.submitBtn, !hasValue && styles.disabled)}
+            disabled={!hasValue}
+            type="submit"
+          >
             Search
           </button>
         </div>
