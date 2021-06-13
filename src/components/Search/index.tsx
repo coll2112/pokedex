@@ -1,8 +1,6 @@
 import React, { FunctionComponent, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import clsx from 'clsx'
-import { setServers } from 'node:dns'
 import { usePokemonProvider } from '~contexts/pokemon'
 
 import styles from './search.module.scss'
