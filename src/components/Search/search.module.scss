@@ -1,4 +1,51 @@
 @use 'global' as *;
 
-.container {
+.inputContainer {
+  position: relative;
+  display: flex;
+}
+
+.label {
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+  color: $white;
+}
+
+.input {
+  border: none;
+  padding: 7px 10px;
+  border-radius: 5px 0 0 5px;
+  background: $darkPeach;
+  border: 1px solid $white;
+  color: $white;
+
+  &:focus + .label,
+  &.hasValue + .label {
+    z-index: 3;
+    top: -8px;
+    left: 0px;
+    transform: scale(0.8);
+    background: $darkPeach;
+  }
+
+  &:focus {
+    border-top: 10%;
+  }
+}
+
+.submitBtn {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  color: $white;
+  background: $red;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background: $redBtnHover;
+  }
 }

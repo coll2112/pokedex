@@ -1,7 +1,7 @@
 @use 'global' as *;
 
 .container {
-  background: #c66352;
+  background: $darkPeach;
   box-shadow: 0px 1px 5px $shadow;
   position: fixed;
   top: 0;
@@ -27,22 +27,23 @@
   text-align: center;
   text-decoration: none;
   position: relative;
+  margin-bottom: 10px;
 
-  .mouseEnter {
-    &::after {
-      color: $brightYellow;
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
+  // .mouseEnter {
+  //   &::after {
+  //     color: $brightYellow;
+  //     content: '';
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //   }
 
-    &:hover {
-      &::after {
-        animation: swipe 0.3s ease-in-out forwards;
-      }
-    }
-  }
+  //   &:hover {
+  //     &::after {
+  //       animation: swipe 0.3s ease-in-out forwards;
+  //     }
+  //   }
+  // }
 }
 
 @keyframes swipe {

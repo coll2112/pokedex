@@ -1,11 +1,23 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 
+import clsx from 'clsx'
 import styles from './search.module.scss'
 
 const Search: FunctionComponent = () => {
   const router = useRouter()
-  const [searchInput, setSearchInput] = useState()
+  const [searchInput, setSearchInput] = useState('')
+  const [hasValue, setHasValue] = useState(false)
+
+  useMemo(() => {
+    if (searchInput.length > 0) {
+      setHasValue(true)
+      console.log('true')
+    } else {
+      setHasValue(false)
+      console.log('false')
+    }
+  }, [searchInput])
 
   const handleInput = (e) => {
     setSearchInput(e.target.value)
@@ -23,13 +35,20 @@ const Search: FunctionComponent = () => {
 
   return (
     <div className={styles.container}>
-      <form onSubmit={handleSearch}>
-        <input
-          name="search"
-          placeholder="Search for..."
-          onChange={handleInput}
-        />
-        <button type="submit">Search</button>
+      <form autoComplete="off" onSubmit={handleSearch}>
+        <div className={styles.inputContainer}>
+          <input
+            className={clsx(styles.input, hasValue && styles.hasValue)}
+            name="search"
+            onChange={handleInput}
+          />
+          <label className={styles.label} htmlFor="search">
+            Enter Pokemon
+          </label>
+          <button className={styles.submitBtn} type="submit">
+            Search
+          </button>
+        </div>
       </form>
     </div>
   )
