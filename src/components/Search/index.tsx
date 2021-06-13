@@ -71,8 +71,6 @@ const Search: FunctionComponent = () => {
     </button>
   ))
 
-  console.log(pokemonComplete)
-
   return (
     <div className={styles.container}>
       <form autoComplete="off" onSubmit={handleSearch}>
