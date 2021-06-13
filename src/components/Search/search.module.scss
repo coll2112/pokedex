@@ -1,0 +1,90 @@
+@use 'global' as *;
+
+.inputContainer {
+  position: relative;
+  display: flex;
+}
+
+.label {
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+  color: rgba($white, 0.5);
+  font-size: 14px;
+}
+
+.input {
+  padding: 7px 10px;
+  border-radius: 5px 0 0 5px;
+  background: $darkPeach;
+  border: 1px solid rgba($white, 0.8);
+  color: $white;
+
+  &:focus + .label,
+  &.hasValue + .label {
+    z-index: 3;
+    top: -8px;
+    left: 0px;
+    transform: scale(0.8);
+    background: $darkPeach;
+    color: $white;
+  }
+
+  &:focus {
+    border: 1px solid $white;
+  }
+}
+
+.submitBtn {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  color: $white;
+  background: $red;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background: $redBtnHover;
+  }
+
+  &:disabled {
+    color: rgba($white, 0.4);
+    cursor: not-allowed;
+    background: rgba($red, 0.4);
+
+    &:hover {
+      background: rgba($red, 0.4);
+    }
+  }
+}
+
+.autoComplete {
+  position: absolute;
+  top: 35px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-columns: 1fr;
+  background: $darkPeach;
+  width: 100%;
+  box-shadow: 0px 3px 5px $shadow;
+  border-radius: 0 0 5px 5px;
+}
+
+.link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  text-transform: capitalize;
+  text-decoration: none;
+  padding: 5px 10px;
+  color: $white;
+
+  &:hover {
+    background-color: $redBtnHover;
+    color: $white;
+  }
+}
