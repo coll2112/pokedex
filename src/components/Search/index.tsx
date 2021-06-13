@@ -2,9 +2,9 @@ import React, { FunctionComponent, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { usePokemonProvider } from '~contexts/pokemon'
+import { Pokemon } from '~interfaces/pokemon'
 
 import styles from './search.module.scss'
-import { Pokemon } from '~interfaces/pokemon'
 
 const Search: FunctionComponent = () => {
   const router = useRouter()
