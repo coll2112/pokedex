@@ -1,12 +1,18 @@
 import React, { FunctionComponent, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-
+import Link from 'next/link'
 import clsx from 'clsx'
+import { setServers } from 'node:dns'
+import { usePokemonProvider } from '~contexts/pokemon'
+
 import styles from './search.module.scss'
+import { Pokemon } from '~interfaces/pokemon'
 
 const Search: FunctionComponent = () => {
   const router = useRouter()
+  const { data, isValidating } = usePokemonProvider()
   const [searchInput, setSearchInput] = useState('')
+  const [autoComplete, setAutoComplete] = useState<Pokemon[]>()
   const [hasValue, setHasValue] = useState(false)
 
   useMemo(() => {
@@ -17,8 +23,22 @@ const Search: FunctionComponent = () => {
     }
   }, [searchInput])
 
+  useMemo(() => {
+    if (data && searchInput.length > 0) {
+      setAutoComplete(
+        [...data].filter((p) => p.name.includes(searchInput)).splice(0, 5)
+      )
+    } else {
+      setAutoComplete([])
+    }
+  }, [searchInput])
+
+  if (isValidating) {
+    return <></>
+  }
+
   const handleInput = (e) => {
-    setSearchInput(e.target.value)
+    setSearchInput(e.target.value.toLowerCase())
   }
 
   const handleSearch = async () => {
@@ -31,6 +51,30 @@ const Search: FunctionComponent = () => {
     )
   }
 
+  const handleAutoComplete = async (name) => {
+    setAutoComplete([])
+    await router.push(
+      {
+        pathname: '/pokemon/',
+        query: { name }
+      },
+      `/pokemon/${name}`
+    )
+  }
+
+  const pokemonComplete = autoComplete?.map((p) => (
+    <button
+      key={p.id}
+      className={styles.link}
+      type="button"
+      onClick={() => handleAutoComplete(p.name)}
+    >
+      {p.name}
+    </button>
+  ))
+
+  console.log(pokemonComplete)
+
   return (
     <div className={styles.container}>
       <form autoComplete="off" onSubmit={handleSearch}>
@@ -41,7 +85,7 @@ const Search: FunctionComponent = () => {
             onChange={handleInput}
           />
           <label className={styles.label} htmlFor="search">
-            Enter Pokemon
+            Search Pokemon
           </label>
           <button
             className={clsx(styles.submitBtn, !hasValue && styles.disabled)}
@@ -50,6 +94,7 @@ const Search: FunctionComponent = () => {
           >
             Search
           </button>
+          <div className={styles.autoComplete}>{pokemonComplete}</div>
         </div>
       </form>
     </div>
