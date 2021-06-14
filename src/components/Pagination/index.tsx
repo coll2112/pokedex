@@ -11,8 +11,6 @@ interface Props {
   maxItemsOnPage?: number
 }
 
-// TODO: strip logic from context and put into parent component
-// Pass data to pagination instead
 const Pagination: FunctionComponent<Props> = ({
   minPageNumber = 0,
   maxPageNumber = 5,
