@@ -13,6 +13,7 @@ const Search: FunctionComponent = () => {
   const [searchInput, setSearchInput] = useState('')
   const [autoComplete, setAutoComplete] = useState<Pokemon[]>([])
   const [hasValue, setHasValue] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   useMemo(() => {
     if (searchInput.length > 0) {
@@ -52,9 +53,9 @@ const Search: FunctionComponent = () => {
   const pokemonComplete = autoComplete?.map((p) => (
     <button
       key={p.id}
-      className={styles.link}
+      className={clsx(styles.link)}
       type="button"
-      onClick={() => handleAutoComplete(p.name)}
+      onMouseDown={() => handleAutoComplete(p.name)}
     >
       {p.name}
     </button>
@@ -67,7 +68,9 @@ const Search: FunctionComponent = () => {
           <input
             className={clsx(styles.input, hasValue && styles.hasValue)}
             name="search"
+            onBlur={() => setIsOpen(false)}
             onChange={handleInput}
+            onFocus={() => setIsOpen(true)}
           />
           <label className={styles.label} htmlFor="search">
             Search Pokemon
@@ -79,7 +82,9 @@ const Search: FunctionComponent = () => {
           >
             Search
           </button>
-          <div className={styles.autoComplete}>{pokemonComplete}</div>
+          <div className={clsx(styles.autoComplete, !isOpen && styles.hide)}>
+            {pokemonComplete}
+          </div>
         </div>
       </form>
     </div>
