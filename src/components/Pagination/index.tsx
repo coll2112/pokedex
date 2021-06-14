@@ -11,6 +11,7 @@ interface Props {
   maxItemsOnPage?: number
 }
 
+// TODO: maybe redo this component for better state management
 const Pagination: FunctionComponent<Props> = ({
   minPageNumber = 0,
   maxPageNumber = 5,
