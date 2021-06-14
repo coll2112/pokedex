@@ -5,11 +5,11 @@ const filterPokemon = (data: Pokemon[], searchInput: string) => {
 
   if (data && searchInput.length > 0) {
     const filterName = [...data]
-      .filter((p) => p.name.includes(searchInput))
+      .filter((p) => p.name.startsWith(searchInput))
       .splice(0, 5)
 
     const filterNumber = [...data]
-      .filter((p) => p.id.toString().includes(searchInput))
+      .filter((p) => p.id.toString().startsWith(searchInput))
       .splice(0, 5)
 
     pokemonFilter = filterNumber.length > 0 ? filterNumber : filterName
