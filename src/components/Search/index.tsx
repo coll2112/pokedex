@@ -3,14 +3,15 @@ import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { usePokemonProvider } from '~contexts/pokemon'
 import { Pokemon } from '~interfaces/pokemon'
+import filterPokemon from '~utils/filterPokemon'
 
 import styles from './search.module.scss'
 
 const Search: FunctionComponent = () => {
   const router = useRouter()
-  const { data, isValidating } = usePokemonProvider()
+  const { data } = usePokemonProvider()
   const [searchInput, setSearchInput] = useState('')
-  const [autoComplete, setAutoComplete] = useState<Pokemon[]>()
+  const [autoComplete, setAutoComplete] = useState<Pokemon[]>([])
   const [hasValue, setHasValue] = useState(false)
 
   useMemo(() => {
@@ -19,21 +20,9 @@ const Search: FunctionComponent = () => {
     } else {
       setHasValue(false)
     }
-  }, [searchInput])
 
-  useMemo(() => {
-    if (data && searchInput.length > 0) {
-      setAutoComplete(
-        [...data].filter((p) => p.name.includes(searchInput)).splice(0, 5)
-      )
-    } else {
-      setAutoComplete([])
-    }
+    setAutoComplete(filterPokemon(data, searchInput))
   }, [searchInput])
-
-  if (isValidating) {
-    return <></>
-  }
 
   const handleInput = (e) => {
     setSearchInput(e.target.value.toLowerCase())
