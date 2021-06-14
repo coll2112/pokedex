@@ -12,7 +12,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 15px 0;
+  padding: 10px 0;
 
   @include mobile {
     flex-direction: row;
@@ -20,62 +20,15 @@
 }
 
 .text {
-  margin: 0;
   color: $white;
-  font-size: 18px;
+  font-size: 16px;
   font-family: $pixel2;
   text-align: center;
   text-decoration: none;
   position: relative;
+  margin-bottom: 10px;
 
-  // .mouseEnter {
-  //   &::after {
-  //     color: $brightYellow;
-  //     content: '';
-  //     position: absolute;
-  //     top: 0;
-  //     left: 0;
-  //   }
-
-  //   &:hover {
-  //     &::after {
-  //       animation: swipe 0.3s ease-in-out forwards;
-  //     }
-  //   }
-  // }
-}
-
-@keyframes swipe {
-  0% {
-    content: 'P';
-    color: $brightYellow;
-  }
-  14% {
-    content: 'Po';
-    color: $brightYellow;
-  }
-  28% {
-    content: 'Pok';
-    color: $brightYellow;
-  }
-  42% {
-    content: 'Poke';
-    color: $brightYellow;
-  }
-  56% {
-    content: 'Poked';
-    color: $brightYellow;
-  }
-  70% {
-    content: 'Pokede';
-    color: $brightYellow;
-  }
-  84% {
-    content: 'Pokedex';
-    color: $brightYellow;
-  }
-  100% {
-    content: 'Pokedex';
-    color: $brightYellow;
+  @include mobile {
+    margin: 0;
   }
 }
